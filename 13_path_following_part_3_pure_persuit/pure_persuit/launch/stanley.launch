@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="gain" default="1.0"/>
+  <node name="stanley" pkg="pure_persuit" type="stanley.py" output="screen">
+    <param name="gain" value="$(arg gain)"/>
+  </node>
+</launch>
