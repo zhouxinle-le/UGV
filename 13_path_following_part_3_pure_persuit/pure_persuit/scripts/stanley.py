@@ -8,13 +8,13 @@ from styx_msgs.msg import Lane
 from tf.transformations import euler_from_quaternion
 
 
-WHEELBASE = 1.868  # m
 MIN_SPEED = 0.5  # m/s, keeps the steering correction finite at startup
 
 
 class Stanley:
     def __init__(self):
         self.gain = rospy.get_param('~gain', 1.0)
+        self.wheelbase = rospy.get_param('~wheelbase', 1.868)
         self.rear_pose = None
         self.speed = None
         self.target_speed = None
@@ -50,8 +50,8 @@ class Stanley:
     def steering_angle(self, pose, speed, segments):
         q = pose.orientation
         _, _, yaw = euler_from_quaternion((q.x, q.y, q.z, q.w))
-        front_x = pose.position.x + WHEELBASE * math.cos(yaw)
-        front_y = pose.position.y + WHEELBASE * math.sin(yaw)
+        front_x = pose.position.x + self.wheelbase * math.cos(yaw)
+        front_y = pose.position.y + self.wheelbase * math.sin(yaw)
 
         nearest_distance = math.inf
         for start_x, start_y, tangent_x, tangent_y, length in segments:

@@ -18,6 +18,7 @@ HORIZON = 6.0
 class PurePersuit:
 	def __init__(self):
 		rospy.init_node('pure_persuit', log_level=rospy.DEBUG)
+		self.wheelbase = rospy.get_param('~wheelbase', 1.868)
 
 		rospy.Subscriber('/smart/rear_pose', PoseStamped, self.pose_cb, queue_size = 1)
 		rospy.Subscriber('/smart/velocity', TwistStamped, self.vel_cb, queue_size = 1)
@@ -80,7 +81,7 @@ class PurePersuit:
 		alpha = math.atan2(targetY - currentY, targetX - currentX) - yaw
 		l = math.sqrt(math.pow(currentX - targetX, 2) + math.pow(currentY - targetY, 2))
 		if(l > 0.5):
-			theta = math.atan(2 * 1.868 * math.sin(alpha) / l)
+			theta = math.atan(2 * self.wheelbase * math.sin(alpha) / l)
 			# #get twist command
 			twistCmd = Twist()
 			twistCmd.linear.x = targetSpeed
