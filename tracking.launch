@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="controller"/>
+  <arg name="wheelbase"/>
+  <arg name="route"/>
+  <arg name="speed"/>
+
+  <node pkg="ugv_lap_waypoints" type="lap_waypoints.py" name="lap_waypoints" required="true">
+    <param name="route" value="$(arg route)"/>
+    <param name="speed" type="double" value="$(arg speed)"/>
+  </node>
+
+  <node if="$(eval arg('controller') == 'pure_pursuit')"
+        pkg="pure_persuit" type="pure_persuit.py" name="pure_persuit" required="true">
+    <param name="wheelbase" type="double" value="$(arg wheelbase)"/>
+  </node>
+  <node if="$(eval arg('controller') == 'stanley')"
+        pkg="pure_persuit" type="stanley.py" name="stanley" required="true">
+    <param name="wheelbase" type="double" value="$(arg wheelbase)"/>
+    <remap from="/base_waypoints" to="/final_waypoints"/>
+  </node>
+</launch>
