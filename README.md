@@ -53,6 +53,15 @@ conda run --no-capture-output -n carla python sweep.py --carla-port 2012 --repea
 
 `--speed` 的单位是 km/h。单跑加 `--no-rendering` 可加速，批量脚本自动启用此选项。带图形界面时默认使用随车视角。两条路线始终各跑一圈。
 
-批量脚本依次运行逆时针大环和顺时针小环，每条路线使用 5/10/15 km/h 三档速度及两种控制器。每个组合重复 3 次，共 36 次。结果目录位于 `results/`，包括每次试验的轨迹 CSV 和日志，以及汇总表 `summary.csv`。
+批量脚本使用两种控制器。逆时针大环的目标速度为 20、40、80 km/h，顺时针小环为 10、15、20 km/h。20 km/h 是两条路线的共同工况。大环的 80 km/h 档用于观察高速下的跟踪、越界和完成情况。每个组合重复 3 次，共 36 次。结果目录位于 `results/`，包括每次试验的轨迹 CSV 和日志，以及汇总表 `summary.csv`。
+
+批量脚本在本次运行的首个试次加载 Town04，随后复用地图，每个试次重新生成车辆并启动控制器。若 CARLA 退出，重启 CARLA，再用原来的重复次数和结果目录续跑，例如：
+
+```bash
+conda run --no-capture-output -n carla python sweep.py --carla-port 2012 --repeats 3 \
+  --resume results/matrix_20261117_154114
+```
+
+续跑会跳过 `summary.csv` 中已有的试次，并将缺少汇总记录的旧轨迹或日志移入以 `_interrupted_` 标记的子目录，再运行该试次。
 
 轨迹记录时间、后轴坐标、速度、转向指令、沿路线进度 `progress_m` 和跟踪距离误差 `cross_track_m`。RMSE、最大误差、实测平均速度和转角变化率 RMS 从距路线两端各 10 m 的中段计算。`outside_lane` 标记后轴偏离参考路径超过当地车道半宽。`completed` 要求车走到本圈末尾，并在距终点 1 m 内连续停稳至少 1 s。

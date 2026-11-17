@@ -1,0 +1,69 @@
+Town04_Opt | forward | 2096.03 m | 4111 waypoints: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/routes/Town04_Opt_forward.csv
+vehicle.audi.a2: wheelbase 2.506 m, rear offset -1.256 m
+0.0 s simulated | 0.0 s real | 0.00 km/h | 0.0 m travelled
+10.0 s simulated | 0.5 s real | 39.71 km/h | 65.3 m travelled
+20.0 s simulated | 0.9 s real | 40.00 km/h | 176.2 m travelled
+30.0 s simulated | 1.4 s real | 40.02 km/h | 287.3 m travelled
+40.0 s simulated | 1.8 s real | 39.95 km/h | 398.4 m travelled
+50.0 s simulated | 2.3 s real | 39.95 km/h | 509.4 m travelled
+60.0 s simulated | 2.7 s real | 40.00 km/h | 620.4 m travelled
+70.0 s simulated | 3.1 s real | 40.03 km/h | 731.5 m travelled
+80.0 s simulated | 3.6 s real | 39.93 km/h | 842.5 m travelled
+90.0 s simulated | 4.0 s real | 39.98 km/h | 953.5 m travelled
+100.0 s simulated | 4.4 s real | 39.99 km/h | 1064.7 m travelled
+110.0 s simulated | 4.8 s real | 40.00 km/h | 1175.8 m travelled
+120.0 s simulated | 5.3 s real | 40.00 km/h | 1286.9 m travelled
+130.0 s simulated | 5.7 s real | 40.00 km/h | 1398.0 m travelled
+140.0 s simulated | 6.1 s real | 40.00 km/h | 1509.1 m travelled
+150.0 s simulated | 6.6 s real | 40.00 km/h | 1620.2 m travelled
+160.0 s simulated | 7.0 s real | 40.00 km/h | 1731.3 m travelled
+170.0 s simulated | 7.5 s real | 40.00 km/h | 1842.4 m travelled
+180.0 s simulated | 8.0 s real | 40.00 km/h | 1953.6 m travelled
+190.0 s simulated | 8.4 s real | 27.53 km/h | 2053.1 m travelled
+200.0 s simulated | 8.9 s real | 0.00 km/h | 2097.7 m travelled
+Stopped after 200.05 s, 0.259 m from the endpoint.
+Real elapsed time 8.88 s, distance travelled 2097.72 m.
+[WARN] [1794901613.360245, 0.300000]: pure persuit starts
+[ERROR] [1794901623.214211, 200.450000]: Could not start motion control node.
+master has started, initiating launch
+... logging to /root/.ros/log/ede7bb1c-e259-11f1-b844-e02e0bf9d409/roslaunch-LE-1770.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;-
+Passed '-' as file argument, attempting to read roslaunch XML from stdin.
+... 841 bytes read successfully.
+
+... loading XML
+Added parameter [/lap_waypoints/route]
+Added parameter [/lap_waypoints/speed]
+Added node of type [ugv_lap_waypoints/lap_waypoints.py] in namespace [/]
+Added parameter [/pure_persuit/wheelbase]
+Added node of type [pure_persuit/pure_persuit.py] in namespace [/]
+[1mstarted roslaunch server http://LE:34725/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /lap_waypoints/route: /tmp/ugv-carla-65...
+ * /lap_waypoints/speed: 40.0
+ * /pure_persuit/wheelbase: 2.506489
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    lap_waypoints (ugv_lap_waypoints/lap_waypoints.py)
+    pure_persuit (pure_persuit/pure_persuit.py)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;- http://localhost:11311
+[1mprocess[lap_waypoints-1]: started with pid [1829][0m
+[1mprocess[pure_persuit-2]: started with pid [1830][0m
+[pure_persuit-2] killing on exit
+[lap_waypoints-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+Trajectory: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/results/matrix_20261117_154114/forward_pure_pursuit_40kmh_r01.csv

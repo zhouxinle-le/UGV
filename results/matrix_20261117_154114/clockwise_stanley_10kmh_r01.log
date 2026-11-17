@@ -1,0 +1,63 @@
+Town04_Opt | clockwise | 463.37 m | 951 waypoints: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/routes/Town04_Opt_clockwise.csv
+vehicle.audi.a2: wheelbase 2.506 m, rear offset -1.256 m
+0.0 s simulated | 0.0 s real | 0.00 km/h | 0.0 m travelled
+10.0 s simulated | 1.1 s real | 10.16 km/h | 21.1 m travelled
+20.0 s simulated | 2.1 s real | 9.83 km/h | 48.9 m travelled
+30.0 s simulated | 3.0 s real | 9.99 km/h | 76.6 m travelled
+40.0 s simulated | 3.7 s real | 10.00 km/h | 104.4 m travelled
+50.0 s simulated | 4.5 s real | 10.00 km/h | 132.2 m travelled
+60.0 s simulated | 5.2 s real | 10.00 km/h | 160.0 m travelled
+70.0 s simulated | 5.9 s real | 10.00 km/h | 187.7 m travelled
+80.0 s simulated | 6.5 s real | 10.00 km/h | 215.5 m travelled
+90.0 s simulated | 7.2 s real | 10.00 km/h | 243.3 m travelled
+100.0 s simulated | 7.9 s real | 9.97 km/h | 271.1 m travelled
+110.0 s simulated | 8.5 s real | 10.00 km/h | 298.8 m travelled
+120.0 s simulated | 9.2 s real | 10.14 km/h | 326.6 m travelled
+130.0 s simulated | 9.8 s real | 10.01 km/h | 354.4 m travelled
+140.0 s simulated | 10.4 s real | 10.00 km/h | 382.2 m travelled
+150.0 s simulated | 11.1 s real | 10.00 km/h | 409.9 m travelled
+160.0 s simulated | 11.7 s real | 9.92 km/h | 437.8 m travelled
+Stopped after 169.95 s, 0.017 m from the endpoint.
+Real elapsed time 12.33 s, distance travelled 461.80 m.
+master has started, initiating launch
+... logging to /root/.ros/log/ede7bb1c-e259-11f1-b844-e02e0bf9d409/roslaunch-LE-5893.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;-
+Passed '-' as file argument, attempting to read roslaunch XML from stdin.
+... 841 bytes read successfully.
+
+... loading XML
+Added parameter [/lap_waypoints/route]
+Added parameter [/lap_waypoints/speed]
+Added node of type [ugv_lap_waypoints/lap_waypoints.py] in namespace [/]
+Added parameter [/stanley/wheelbase]
+Added node of type [pure_persuit/stanley.py] in namespace [/]
+[1mstarted roslaunch server http://LE:42251/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /lap_waypoints/route: /tmp/ugv-carla-16...
+ * /lap_waypoints/speed: 10.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+ * /stanley/wheelbase: 2.506496
+
+NODES
+  /
+    lap_waypoints (ugv_lap_waypoints/lap_waypoints.py)
+    stanley (pure_persuit/stanley.py)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;- http://localhost:11311
+[1mprocess[lap_waypoints-1]: started with pid [5949][0m
+[1mprocess[stanley-2]: started with pid [5950][0m
+[stanley-2] killing on exit
+[lap_waypoints-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+Trajectory: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/results/matrix_20261117_154114/clockwise_stanley_10kmh_r01.csv

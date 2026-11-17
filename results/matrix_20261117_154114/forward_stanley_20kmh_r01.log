@@ -1,0 +1,85 @@
+Town04_Opt | forward | 2096.03 m | 4111 waypoints: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/routes/Town04_Opt_forward.csv
+vehicle.audi.a2: wheelbase 2.506 m, rear offset -1.256 m
+0.0 s simulated | 0.0 s real | 0.00 km/h | 0.0 m travelled
+10.0 s simulated | 0.4 s real | 20.18 km/h | 39.5 m travelled
+20.0 s simulated | 0.8 s real | 20.14 km/h | 95.2 m travelled
+30.0 s simulated | 1.2 s real | 20.13 km/h | 150.8 m travelled
+40.0 s simulated | 3.0 s real | 20.11 km/h | 206.3 m travelled
+50.0 s simulated | 6.5 s real | 20.13 km/h | 261.9 m travelled
+60.0 s simulated | 12.4 s real | 20.12 km/h | 317.5 m travelled
+70.0 s simulated | 16.4 s real | 20.10 km/h | 373.0 m travelled
+80.0 s simulated | 19.0 s real | 20.10 km/h | 428.5 m travelled
+90.0 s simulated | 20.3 s real | 20.12 km/h | 483.9 m travelled
+100.0 s simulated | 21.2 s real | 20.12 km/h | 539.5 m travelled
+110.0 s simulated | 22.1 s real | 20.12 km/h | 595.0 m travelled
+120.0 s simulated | 22.9 s real | 20.12 km/h | 650.6 m travelled
+130.0 s simulated | 23.6 s real | 19.96 km/h | 706.1 m travelled
+140.0 s simulated | 24.3 s real | 19.99 km/h | 761.6 m travelled
+150.0 s simulated | 25.1 s real | 19.96 km/h | 817.1 m travelled
+160.0 s simulated | 25.8 s real | 19.97 km/h | 872.6 m travelled
+170.0 s simulated | 26.4 s real | 19.99 km/h | 928.1 m travelled
+180.0 s simulated | 27.1 s real | 19.99 km/h | 983.7 m travelled
+190.0 s simulated | 27.7 s real | 20.00 km/h | 1039.2 m travelled
+200.0 s simulated | 28.2 s real | 20.00 km/h | 1094.8 m travelled
+210.0 s simulated | 29.0 s real | 20.00 km/h | 1150.3 m travelled
+220.0 s simulated | 30.1 s real | 20.00 km/h | 1205.9 m travelled
+230.0 s simulated | 31.1 s real | 20.00 km/h | 1261.4 m travelled
+240.0 s simulated | 31.9 s real | 20.00 km/h | 1317.0 m travelled
+250.0 s simulated | 32.8 s real | 20.00 km/h | 1372.5 m travelled
+260.0 s simulated | 33.8 s real | 20.00 km/h | 1428.1 m travelled
+270.0 s simulated | 34.6 s real | 20.00 km/h | 1483.7 m travelled
+280.0 s simulated | 35.3 s real | 20.00 km/h | 1539.2 m travelled
+290.0 s simulated | 36.0 s real | 20.00 km/h | 1594.8 m travelled
+300.0 s simulated | 36.8 s real | 20.00 km/h | 1650.3 m travelled
+310.0 s simulated | 37.5 s real | 20.00 km/h | 1705.9 m travelled
+320.0 s simulated | 38.3 s real | 20.00 km/h | 1761.4 m travelled
+330.0 s simulated | 39.1 s real | 20.00 km/h | 1817.0 m travelled
+340.0 s simulated | 39.7 s real | 20.00 km/h | 1872.5 m travelled
+350.0 s simulated | 40.3 s real | 20.00 km/h | 1928.1 m travelled
+360.0 s simulated | 40.9 s real | 20.00 km/h | 1983.6 m travelled
+370.0 s simulated | 41.6 s real | 20.00 km/h | 2039.2 m travelled
+380.0 s simulated | 42.2 s real | 12.41 km/h | 2090.5 m travelled
+Stopped after 383.15 s, 0.166 m from the endpoint.
+Real elapsed time 42.43 s, distance travelled 2096.41 m.
+master has started, initiating launch
+... logging to /root/.ros/log/ede7bb1c-e259-11f1-b844-e02e0bf9d409/roslaunch-LE-943.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;-
+Passed '-' as file argument, attempting to read roslaunch XML from stdin.
+... 841 bytes read successfully.
+
+... loading XML
+Added parameter [/lap_waypoints/route]
+Added parameter [/lap_waypoints/speed]
+Added node of type [ugv_lap_waypoints/lap_waypoints.py] in namespace [/]
+Added parameter [/stanley/wheelbase]
+Added node of type [pure_persuit/stanley.py] in namespace [/]
+[1mstarted roslaunch server http://LE:33679/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /lap_waypoints/route: /tmp/ugv-carla-1f...
+ * /lap_waypoints/speed: 20.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+ * /stanley/wheelbase: 2.506489
+
+NODES
+  /
+    lap_waypoints (ugv_lap_waypoints/lap_waypoints.py)
+    stanley (pure_persuit/stanley.py)
+
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;- http://localhost:11311
+[1mprocess[lap_waypoints-1]: started with pid [1002][0m
+[1mprocess[stanley-2]: started with pid [1003][0m
+[stanley-2] killing on exit
+[lap_waypoints-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+Trajectory: /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking/results/matrix_20261117_154114/forward_stanley_20kmh_r01.csv
