@@ -100,9 +100,13 @@ def main():
         subprocess.run([sys.executable, '-B', str(ANALYSIS_DIR / 'plot_metrics.py'), str(data_path), str(stage)],
                        env=env, check=True)
         subprocess.run([str(node.resolve()), str(workbook_script), str(data_path), str(stage)], check=True)
-        for name in ('Town04_实验结果汇总.xlsx', *(f'Town04_三项指标对比.{ext}' for ext in ('png', 'pdf', 'svg'))):
+        figure_formats = ('pdf', 'svg', 'png', 'tiff')
+        for name in ('Town04_实验结果汇总.xlsx', *(f'Town04_三项指标对比.{ext}' for ext in figure_formats)):
             shutil.copyfile(stage / name, output / name)
             print(output / name)
+        qa = output / '.qa'
+        qa.mkdir(exist_ok=True)
+        shutil.copyfile(stage / 'plot.alignment.json', qa / 'plot.alignment.json')
 
 
 if __name__ == '__main__':

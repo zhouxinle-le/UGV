@@ -74,6 +74,8 @@ conda run --no-capture-output -n carla python -B analysis/generate_results.py \
   results/matrix_20261117_154114
 ```
 
-脚本读取批次中的 `summary.csv` 及其已计算的单次指标，根据路线、目标速度和算法分组。连续指标使用有效试次的均值和样本标准差，样本不足两次时标准差留空。Excel 包含可追溯到试次明细的汇总公式。PNG、PDF 和 SVG 展示跟踪 RMSE、实测平均速度和转向变化率 RMS。
+脚本读取批次中的 `summary.csv` 及其已计算的单次指标，根据路线、目标速度和算法分组。连续指标使用有效试次的均值和样本标准差，样本不足两次时标准差留空。Excel 包含可追溯到试次明细的汇总公式。
+
+`matrix_20261117_154114` 批次中，每个点及其标注为 3 次试跑的平均值，误差棒为 ±1 个样本标准差。图中的「平均跟踪误差」是单次跟踪误差均方根的跨试次平均，「平均转向变化率」是单次转向变化率均方根的跨试次平均。各子图使用独立的线性纵轴。
 
 默认输出到 `analysis/outputs/<批次名>/`。`outputs/` 和 `generate_results.py` 同级，可用 `--output-dir` 指定其他位置。生成过程无需启动 CARLA 或 ROS。绘图脚本为 `analysis/plot_metrics.py`，使用本地 Matplotlib 和 nature-figure 的对齐检查。表格脚本为 `analysis/build_workbook.mjs`，使用 Codex 工作区运行时里的 Node.js 和 `@oai/artifact-tool`。依赖位置不同时，可用 `--figure-skill` 和 `--runtime-dir` 指定。
