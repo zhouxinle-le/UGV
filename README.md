@@ -65,3 +65,15 @@ conda run --no-capture-output -n carla python sweep.py --carla-port 2012 --repea
 续跑会跳过 `summary.csv` 中已有的试次，并将缺少汇总记录的旧轨迹或日志移入以 `_interrupted_` 标记的子目录，再运行该试次。
 
 轨迹记录时间、后轴坐标、速度、转向指令、沿路线进度 `progress_m` 和跟踪距离误差 `cross_track_m`。RMSE、最大误差、实测平均速度和转角变化率 RMS 从距路线两端各 10 m 的中段计算。`outside_lane` 标记后轴偏离参考路径超过当地车道半宽。`completed` 要求车走到本圈末尾，并在距终点 1 m 内连续停稳至少 1 s。
+
+## 本地生成报告表和图
+
+```bash
+cd /home/le/workspace/study/basic_course/UGV/carla_town_loop_tracking
+conda run --no-capture-output -n carla python -B analysis/generate_results.py \
+  results/matrix_20261117_154114
+```
+
+脚本读取批次中的 `summary.csv` 及其已计算的单次指标，根据路线、目标速度和算法分组。连续指标使用有效试次的均值和样本标准差，样本不足两次时标准差留空。Excel 包含可追溯到试次明细的汇总公式。PNG、PDF 和 SVG 展示跟踪 RMSE、实测平均速度和转向变化率 RMS。
+
+默认输出到 `analysis/outputs/<批次名>/`。`outputs/` 和 `generate_results.py` 同级，可用 `--output-dir` 指定其他位置。生成过程无需启动 CARLA 或 ROS。绘图脚本为 `analysis/plot_metrics.py`，使用本地 Matplotlib 和 nature-figure 的对齐检查。表格脚本为 `analysis/build_workbook.mjs`，使用 Codex 工作区运行时里的 Node.js 和 `@oai/artifact-tool`。依赖位置不同时，可用 `--figure-skill` 和 `--runtime-dir` 指定。
