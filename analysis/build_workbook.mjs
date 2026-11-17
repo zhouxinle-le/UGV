@@ -4,14 +4,13 @@ import assert from 'node:assert/strict';
 import { SpreadsheetFile, Workbook } from '@oai/artifact-tool';
 
 const [source, out] = process.argv.slice(2);
-const { batch, fields, rows, summary } = JSON.parse(await fs.readFile(source, 'utf8'));
+const { batch, platform, routes, fields, rows, summary } = JSON.parse(await fs.readFile(source, 'utf8'));
 const wb = Workbook.create();
 const main = wb.worksheets.add('工况汇总');
 const raw = wb.worksheets.add('试次明细');
 const numericMetrics = ['rmse_m','max_error_m','mean_speed_kmh','steering_rate_rms_deg_s'];
 const groupLabels = ['跟踪 RMSE (m)','最大误差 (m)','实测均速 (km/h)','转向变化率 RMS (°/s)'];
 const controllers = {pure_pursuit:'Pure Pursuit',stanley:'Stanley'};
-const routes = {forward:'逆时针大环',clockwise:'顺时针小环'};
 
 function line(sheet, address, value, bg, fg, size) {
   const range = sheet.getRange(address);
@@ -41,7 +40,7 @@ function defaults(sheet, address, cols, header, widths) {
 const lastGroup = summary.length + 6;
 const lastTrial = rows.length + 6;
 defaults(main,`A1:N${lastGroup}`,14,'A5:N6',[135,112,126,62,70,72,78,78,77,77,84,84,86,86]);
-line(main,'A1:N2',`Town04 路径跟踪 · ${summary.length} 组工况汇总`,'#102E44','#FFFFFF',19);
+line(main,'A1:N2',`${platform} 路径跟踪 · ${summary.length} 组工况汇总`,'#102E44','#FFFFFF',19);
 line(main,'A3:N3',`${rows.length} 次试验。连续指标按有效试次统计均值和样本标准差。`,'#E9F3F8','#244559',11);
 line(main,'A4:N4','中段统计剔除路线首尾各 10 m。完成和越界分别按全程计数。','#E9F3F8','#244559',11);
 main.getRange('A6:F6').values = [['路线','目标速度 (km/h)','算法','试次数','完成次数','越界次数']];
@@ -60,7 +59,7 @@ main.getRange(`B7:B${lastGroup}`).format.horizontalAlignment = 'center';
 for (const col of ['H','J','L','N']) main.getRange(`${col}7:${col}${lastGroup}`).setNumberFormat('0.0000');
 
 defaults(raw,`A1:L${lastTrial}`,12,'A6:L6',[112,124,108,62,80,80,91,113,110,114,125,166]);
-line(raw,'A1:L2',`Town04 路径跟踪 · ${rows.length} 次试验明细`,'#102E44','#FFFFFF',19);
+line(raw,'A1:L2',`${platform} 路径跟踪 · ${rows.length} 次试验明细`,'#102E44','#FFFFFF',19);
 line(raw,'A3:L3',`数据来源  ${batch}/summary.csv`,'#E9F3F8','#244559',11);
 line(raw,'A4:L4','完成和越界字段中，1 表示是，0 表示否。','#E9F3F8','#244559',11);
 raw.getRange('A6:L6').values = [['路线代码','算法代码','目标速度 (km/h)','重复号','完成','越界','耗时 (s)','终点距离 (m)','RMSE (m)','最大误差 (m)','实测均速 (km/h)','转向变化率 RMS (°/s)']];
@@ -97,6 +96,6 @@ for (let i=0;i<expected.length;i++) for (let j=0;j<expected[i].length;j++) {
             `Unexpected summary value at group ${i + 1}, column ${j + 4}: ${value}`);
 }
 const xlsx = await SpreadsheetFile.exportXlsx(wb);
-await xlsx.save(path.join(out, 'Town04_实验结果汇总.xlsx'));
+await xlsx.save(path.join(out, `${platform}_实验结果汇总.xlsx`));
 const preview = await wb.render({sheetName:'工况汇总',range:`A1:N${lastGroup}`,scale:1,format:'png'});
 await fs.writeFile(path.join(out, 'workbook-preview.png'), new Uint8Array(await preview.arrayBuffer()));

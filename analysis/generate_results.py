@@ -20,11 +20,22 @@ DEPENDENCIES = Path.home() / '.cache/codex-runtimes/codex-primary-runtime/depend
 METRICS = ('rmse_m', 'max_error_m', 'mean_speed_kmh', 'steering_rate_rms_deg_s')
 FIELDS = ('route', 'controller', 'target_speed_kmh', 'repeat', 'completed', 'outside_lane',
           'elapsed_s', 'endpoint_error_m', *METRICS)
-ROUTES = ('forward', 'clockwise')
+CARLA_ROUTES = {'forward': '逆时针大环', 'clockwise': '顺时针小环'}
 CONTROLLERS = ('pure_pursuit', 'stanley')
 
 
 def build_data(batch):
+    metadata = batch / 'batch.json'
+    if metadata.is_file():
+        configuration = json.loads(metadata.read_text(encoding='utf-8'))
+        if configuration['platform'] != 'Gazebo':
+            raise ValueError('Unknown experiment platform in batch.json.')
+        platform = 'Gazebo'
+        routes = configuration['route_labels']
+    else:
+        platform = 'Town04'
+        routes = CARLA_ROUTES
+    route_order = {name: index for index, name in enumerate(routes)}
     groups = defaultdict(list)
     identifiers = set()
     with (batch / 'summary.csv').open(newline='') as source:
@@ -35,7 +46,7 @@ def build_data(batch):
             case, controller = row['route'], row['controller']
             speed, repeat = int(row['target_speed_kmh']), int(row['repeat'])
             key = (case, speed, controller, repeat)
-            if case not in ROUTES or controller not in CONTROLLERS or key in identifiers:
+            if case not in routes or controller not in CONTROLLERS or key in identifiers:
                 raise ValueError(f'Invalid or duplicate trial on summary.csv line {line}: {key}')
             identifiers.add(key)
             for field, value in row.items():
@@ -52,7 +63,7 @@ def build_data(batch):
         raise ValueError('summary.csv contains no trials.')
     rows, summary = [], []
     for (case, speed, controller), group in sorted(
-        groups.items(), key=lambda entry: (ROUTES.index(entry[0][0]), entry[0][1], CONTROLLERS.index(entry[0][2]))
+        groups.items(), key=lambda entry: (route_order[entry[0][0]], entry[0][1], CONTROLLERS.index(entry[0][2]))
     ):
         start = len(rows)
         rows.extend([row[field] for field in FIELDS] for row in sorted(group, key=lambda r: r['repeat']))
@@ -64,7 +75,7 @@ def build_data(batch):
         summary.append(dict(case=case, speed=speed, controller=controller, start=start, count=len(group),
                             complete=sum(row['completed'] for row in group),
                             outside=sum(row['outside_lane'] for row in group), metrics=metrics))
-    return dict(batch=batch.name, fields=FIELDS, rows=rows, summary=summary)
+    return dict(batch=batch.name, platform=platform, routes=routes, fields=FIELDS, rows=rows, summary=summary)
 
 
 def main():
@@ -101,7 +112,8 @@ def main():
                        env=env, check=True)
         subprocess.run([str(node.resolve()), str(workbook_script), str(data_path), str(stage)], check=True)
         figure_formats = ('pdf', 'svg', 'png', 'tiff')
-        for name in ('Town04_实验结果汇总.xlsx', *(f'Town04_三项指标对比.{ext}' for ext in figure_formats)):
+        platform = data['platform']
+        for name in (f'{platform}_实验结果汇总.xlsx', *(f'{platform}_三项指标对比.{ext}' for ext in figure_formats)):
             shutil.copyfile(stage / name, output / name)
             print(output / name)
         qa = output / '.qa'

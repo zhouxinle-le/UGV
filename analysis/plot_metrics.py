@@ -26,7 +26,6 @@ CONTROLLERS = (
     ('pure_pursuit', '纯点跟踪', '#1769AA', 'o', '-'),
     ('stanley', 'stanley方法', '#BA4900', 's', (0, (3.5, 1.8))),
 )
-STEM = 'Town04_三项指标对比'
 
 
 def draw_panel(ax, route_name, groups, metric, title, y_label):
@@ -142,10 +141,12 @@ def draw_figure(data):
         'svg.fonttype': 'none',
         'savefig.facecolor': 'white',
     })
-    fig, axes = plt.subplots(3, 2, figsize=(183 / 25.4, 170 / 25.4))
+    routes = ROUTES if data['platform'] == 'Town04' else tuple(data['routes'].items())
+    width = 120 if len(routes) == 1 else max(183, 82 * len(routes))
+    fig, axes = plt.subplots(3, len(routes), squeeze=False, figsize=(width / 25.4, 170 / 25.4))
     fig.subplots_adjust(left=.104, right=.978, bottom=.070, top=.952, wspace=.33, hspace=.51)
     panel_annotations = {}
-    for col, (case, route_name) in enumerate(ROUTES):
+    for col, (case, route_name) in enumerate(routes):
         groups = [entry for entry in data['summary'] if entry['case'] == case]
         for row, (metric, title, y_label) in enumerate(METRICS):
             ax = axes[row, col]
@@ -163,10 +164,11 @@ def main():
     data = json.loads(source.read_text(encoding='utf-8'))
     fig = draw_figure(data)
     require_matplotlib_panel_alignment(fig, json_out=output / 'plot.alignment.json', strict=True)
-    fig.savefig(output / f'{STEM}.pdf')
-    fig.savefig(output / f'{STEM}.svg')
-    fig.savefig(output / f'{STEM}.png', dpi=300)
-    fig.savefig(output / f'{STEM}.tiff', dpi=600, pil_kwargs={'compression': 'tiff_lzw'})
+    stem = f"{data['platform']}_三项指标对比"
+    fig.savefig(output / f'{stem}.pdf')
+    fig.savefig(output / f'{stem}.svg')
+    fig.savefig(output / f'{stem}.png', dpi=300)
+    fig.savefig(output / f'{stem}.tiff', dpi=600, pil_kwargs={'compression': 'tiff_lzw'})
     plt.close(fig)
 
 
