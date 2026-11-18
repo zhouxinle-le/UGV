@@ -79,3 +79,12 @@ conda run --no-capture-output -n carla python -B analysis/generate_results.py \
 `matrix_20261117_154114` 批次中，每个点及其标注为 3 次试跑的平均值，误差棒为 ±1 个样本标准差。图中的「平均跟踪误差」是单次跟踪误差均方根的跨试次平均，「平均转向变化率」是单次转向变化率均方根的跨试次平均。各子图使用独立的线性纵轴。
 
 默认输出到 `analysis/outputs/<批次名>/`。`outputs/` 和 `generate_results.py` 同级，可用 `--output-dir` 指定其他位置。生成过程无需启动 CARLA 或 ROS。绘图脚本为 `analysis/plot_metrics.py`，使用本地 Matplotlib 和 nature-figure 的对齐检查。表格脚本为 `analysis/build_workbook.mjs`，使用 Codex 工作区运行时里的 Node.js 和 `@oai/artifact-tool`。依赖位置不同时，可用 `--figure-skill` 和 `--runtime-dir` 指定。
+
+实际路径对比可单独运行：
+
+```bash
+conda run --no-capture-output -n carla python -B analysis/plot_paths.py \
+  results/matrix_20261117_154114
+```
+
+大环、小环分别生成一张图，每档速度一列，上排为参考路径与两种算法的完整实际轨迹，下排为同一弯道的局部放大。默认两种方法都取第 1 次试验，不对轨迹取平均；用 `--repeat 2` 或 `--repeat 3` 可换试次。局部区域根据参考路径最大曲率选择，同一路线的三档速度使用相同坐标范围和等比例坐标轴。输出 PNG、PDF、SVG 和 TIFF 到 `analysis/outputs/<批次名>/`，可用 `--output-dir` 更改。参考路线读取 `routes/Town04_Opt_forward.csv` 和 `routes/Town04_Opt_clockwise.csv`，应与采集该批次时的路线一致；历史路线放在其他目录时用 `--routes-dir` 指定。运行绘图不需要启动 CARLA。
