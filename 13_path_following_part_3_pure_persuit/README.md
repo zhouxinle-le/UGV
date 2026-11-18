@@ -108,3 +108,11 @@ sudo chown -R "$(id -u):$(id -g)" "$batch"
 conda run --no-capture-output -n carla python -B ../../carla_town_loop_tracking/analysis/generate_results.py \
   "$batch" --output-dir "$batch/analysis"
 ```
+
+同一张画布比较参考路径和两种算法的实际路线，在宿主机的本章目录执行：
+
+```bash
+conda run --no-capture-output -n carla python -B gazebo_tracking/plot_paths.py "$batch"
+```
+
+输出到该批次的 `analysis/`。每档目标速度一列，上排叠加完整参考路径与两种算法各自第 1 次试验的实际轨迹，下排放大同一次试验中的同一弯道。可用 `--repeat 2` 或 `--repeat 3` 选择其他试次。不同速度使用相同的坐标范围，横纵坐标等比例，便于比较实际几何偏差。放大区域按参考路径的最大曲率位置选择。实际路线位置为车辆后轴位置。
