@@ -1,0 +1,143 @@
+Authorization required, but no authorization protocol specified
+[31m[ERROR] [1794918121.412847538, 0.001000000]: No p gain specified for pid.  Namespace: /smart/gazebo_ros_control/pid_gains/rear_right_wheel_joint[0m
+[31m[ERROR] [1794918121.413865139, 0.001000000]: No p gain specified for pid.  Namespace: /smart/gazebo_ros_control/pid_gains/rear_left_wheel_joint[0m
+Collecting stanley at 15 km/h over 84.2 m.
+[DEBUG] [1794918120.923617, 0.000000]: init_node, name[/vehicle_pose_and_velocity_updater], pid[5743]
+[DEBUG] [1794918120.924742, 0.000000]: binding to 127.0.0.1 0
+[DEBUG] [1794918120.925352, 0.000000]: bound to 127.0.0.1 42487
+[DEBUG] [1794918120.926277, 0.000000]: ... service URL is rosrpc://127.0.0.1:42487
+[DEBUG] [1794918120.927251, 0.000000]: [/vehicle_pose_and_velocity_updater/get_loggers]: new Service instance
+[DEBUG] [1794918120.928139, 0.000000]: ... service URL is rosrpc://127.0.0.1:42487
+[DEBUG] [1794918120.928448, 0.000000]: [/vehicle_pose_and_velocity_updater/set_logger_level]: new Service instance
+[DEBUG] [1794918120.929989, 0.000000]: node[/vehicle_pose_and_velocity_updater, http://127.0.0.1:35019/] entering spin(), pid[5743]
+[DEBUG] [1794918121.102486, 0.000000]: connecting to 127.0.0.1 38307
+[DEBUG] [1794918121.109147, 0.000000]: connecting to 127.0.0.1 38307
+[DEBUG] [1794918144.116721, 22.656000]: ERROR: Broken Pipe
+[DEBUG] [1794918144.122256, 22.661000]: publisher connection to [/gazebo_trial] terminated, see errorlog for details:
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/impl/tcpros_base.py", line 696, in write_data
+    self.socket.sendall(data)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 1075, in publish
+    c.write_data(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/impl/tcpros_pubsub.py", line 413, in write_data
+    raise error
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/impl/tcpros_pubsub.py", line 437, in _run
+    self._connection.write_data(data)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/impl/tcpros_base.py", line 705, in write_data
+    raise TransportTerminated(str(ioe_errno)+msg)
+rospy.exceptions.TransportTerminated: 32Broken pipe
+
+[DEBUG] [1794918144.812611, 23.351000]: ERROR: Broken Pipe
+[DEBUG] [1794918144.812777, 23.351000]: ERROR: Broken Pipe
+[DEBUG] [1794918144.815815, 23.351000]: [/clock] failed to receive incoming message : unable to receive data from sender, check sender's logs for details
+[DEBUG] [1794918144.816163, 23.351000]: [/gazebo/model_states] failed to receive incoming message : unable to receive data from sender, check sender's logs for details
+[ERROR] [1794918145.410233, 23.350000]: Could not start waypoint updater node.
+[WARN] [1794918159.842092, 23.351000]: Controller Spawner error while taking down controllers: transport error completing service call: unable to receive data from sender, check sender's logs for details
+[INFO] [1794918120.888222, 0.000000]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1794918121.494722, 0.065000]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1794918121.499872, 0.070000]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1794918121.503923, 0.074000]: Loading controller: joint_state_controller
+[INFO] [1794918121.515185, 0.086000]: Loading controller: rear_right_velocity_controller
+[INFO] [1794918121.530024, 0.100000]: Loading controller: rear_left_velocity_controller
+[INFO] [1794918121.540114, 0.111000]: Loading controller: front_right_steering_position_controller
+[INFO] [1794918121.573024, 0.136000]: Loading controller: front_left_steering_position_controller
+[INFO] [1794918121.597446, 0.160000]: Controller Spawner: Loaded controllers: joint_state_controller, rear_right_velocity_controller, rear_left_velocity_controller, front_right_steering_position_controller, front_left_steering_position_controller
+[INFO] [1794918121.621866, 0.184000]: Started controllers: joint_state_controller, rear_right_velocity_controller, rear_left_velocity_controller, front_right_steering_position_controller, front_left_steering_position_controller
+[INFO] [1794918144.811234, 23.350000]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1794918144.813061, 23.351000]: Stopping all controllers...
+[31m[smart/controller_spawner-4] escalating to SIGTERM[0m
+[31m[gazebo-2] escalating to SIGTERM[0m
+... logging to /root/.ros/log/7d027b30-e281-11f1-ba25-e02e0bf9d409/roslaunch-LE-5703.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/tmp/ugv-gazebo-i5dmgwii/trial.launch
+[1mstarted roslaunch server http://127.0.0.1:45307/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /gazebo/enable_ros_network: True
+ * /robot_description: <?xml version="1....
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+ * /smart/front_left_steering_position_controller/joint: front_left_steeri...
+ * /smart/front_left_steering_position_controller/pid/d: 1.0
+ * /smart/front_left_steering_position_controller/pid/i: 200.0
+ * /smart/front_left_steering_position_controller/pid/p: 40000.0
+ * /smart/front_left_steering_position_controller/type: effort_controller...
+ * /smart/front_right_steering_position_controller/joint: front_right_steer...
+ * /smart/front_right_steering_position_controller/pid/d: 1.0
+ * /smart/front_right_steering_position_controller/pid/i: 200.0
+ * /smart/front_right_steering_position_controller/pid/p: 40000.0
+ * /smart/front_right_steering_position_controller/type: effort_controller...
+ * /smart/joint_state_controller/publish_rate: 50
+ * /smart/joint_state_controller/type: joint_state_contr...
+ * /smart/rear_left_velocity_controller/joint: rear_left_wheel_j...
+ * /smart/rear_left_velocity_controller/pid/d: 10.0
+ * /smart/rear_left_velocity_controller/pid/i: 0.01
+ * /smart/rear_left_velocity_controller/pid/p: 100.0
+ * /smart/rear_left_velocity_controller/type: velocity_controll...
+ * /smart/rear_right_velocity_controller/joint: rear_right_wheel_...
+ * /smart/rear_right_velocity_controller/pid/d: 10.0
+ * /smart/rear_right_velocity_controller/pid/i: 0.01
+ * /smart/rear_right_velocity_controller/pid/p: 100.0
+ * /smart/rear_right_velocity_controller/type: velocity_controll...
+ * /use_sim_time: True
+ * /waypoint_loader/path: /tmp/ugv-gazebo-i...
+ * /waypoint_loader/velocity: 15.0
+
+NODES
+  /
+    cmdvel2gazebo (car_model/cmdvel2gazebo.py)
+    gazebo (gazebo_ros/gzserver)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    spawn_model (gazebo_ros/spawn_model)
+    stanley (pure_persuit/stanley.py)
+    transform_publisher (car_model/transform_publisher.py)
+    vehicle_pose_and_velocity_updater (car_model/vehicle_pose_and_velocity_updater.py)
+    waypoint_loader (waypoint_loader/waypoint_loader.py)
+    waypoint_updater (waypoint_updater/waypoint_updater.py)
+  /smart/
+    controller_spawner (controller_manager/spawner)
+
+auto-starting new master
+[1mprocess[master]: started with pid [5714][0m
+[1mROS_MASTER_URI=http://127.0.0.1:33059/[0m
+]2;/tmp/ugv-gazebo-i5dmgwii/trial.launch http://127.0.0.1:33059/
+[1msetting /run_id to 7d027b30-e281-11f1-ba25-e02e0bf9d409[0m
+[1mprocess[rosout-1]: started with pid [5727][0m
+started core service [/rosout]
+[1mprocess[gazebo-2]: started with pid [5734][0m
+[1mprocess[spawn_model-3]: started with pid [5737][0m
+[1mprocess[smart/controller_spawner-4]: started with pid [5740][0m
+[1mprocess[robot_state_publisher-5]: started with pid [5741][0m
+[1mprocess[cmdvel2gazebo-6]: started with pid [5742][0m
+[1mprocess[vehicle_pose_and_velocity_updater-7]: started with pid [5743][0m
+[1mprocess[transform_publisher-8]: started with pid [5745][0m
+[1mprocess[waypoint_loader-9]: started with pid [5750][0m
+[1mprocess[waypoint_updater-10]: started with pid [5752][0m
+[1mprocess[stanley-11]: started with pid [5753][0m
+[1m[spawn_model-3] process has finished cleanly
+log file: /root/.ros/log/7d027b30-e281-11f1-ba25-e02e0bf9d409/spawn_model-3*.log[0m
+[stanley-11] killing on exit
+[waypoint_updater-10] killing on exit
+[waypoint_loader-9] killing on exit
+[transform_publisher-8] killing on exit
+[vehicle_pose_and_velocity_updater-7] killing on exit
+[cmdvel2gazebo-6] killing on exit
+[robot_state_publisher-5] killing on exit
+[smart/controller_spawner-4] killing on exit
+[gazebo-2] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+completed=True, outside_lane=False, RMSE=0.083

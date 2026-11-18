@@ -1,0 +1,125 @@
+Authorization required, but no authorization protocol specified
+[31m[ERROR] [1794917741.890312715, 0.184000000]: No p gain specified for pid.  Namespace: /smart/gazebo_ros_control/pid_gains/rear_right_wheel_joint[0m
+[31m[ERROR] [1794917741.891561557, 0.184000000]: No p gain specified for pid.  Namespace: /smart/gazebo_ros_control/pid_gains/rear_left_wheel_joint[0m
+Collecting pure_pursuit at 10 km/h over 84.2 m.
+[DEBUG] [1794917741.412371, 0.000000]: init_node, name[/vehicle_pose_and_velocity_updater], pid[2965]
+[DEBUG] [1794917741.413030, 0.000000]: binding to 127.0.0.1 0
+[DEBUG] [1794917741.413533, 0.000000]: bound to 127.0.0.1 36305
+[DEBUG] [1794917741.414298, 0.000000]: ... service URL is rosrpc://127.0.0.1:36305
+[DEBUG] [1794917741.414788, 0.000000]: [/vehicle_pose_and_velocity_updater/get_loggers]: new Service instance
+[DEBUG] [1794917741.415695, 0.000000]: ... service URL is rosrpc://127.0.0.1:36305
+[DEBUG] [1794917741.416214, 0.000000]: [/vehicle_pose_and_velocity_updater/set_logger_level]: new Service instance
+[DEBUG] [1794917741.419064, 0.000000]: node[/vehicle_pose_and_velocity_updater, http://127.0.0.1:37875/] entering spin(), pid[2965]
+[DEBUG] [1794917741.564367, 0.000000]: connecting to 127.0.0.1 52655
+[DEBUG] [1794917741.566336, 0.000000]: connecting to 127.0.0.1 52655
+[DEBUG] [1794917774.519557, 32.759000]: ERROR: Broken Pipe
+[DEBUG] [1794917774.522576, 32.762000]: ERROR: Broken Pipe
+[DEBUG] [1794917775.215394, 33.449000]: [/clock] failed to receive incoming message : unable to receive data from sender, check sender's logs for details
+[DEBUG] [1794917775.215760, 33.449000]: [/gazebo/model_states] failed to receive incoming message : unable to receive data from sender, check sender's logs for details
+[ERROR] [1794917775.807408, 33.449000]: Could not start waypoint updater node.
+[WARN] [1794917741.382313, 0.000000]: pure persuit starts
+[ERROR] [1794917775.807352, 33.449000]: Could not start motion control node.
+[WARN] [1794917790.244162, 33.449000]: Controller Spawner error while taking down controllers: transport error completing service call: unable to receive data from sender, check sender's logs for details
+[INFO] [1794917741.367441, 0.000000]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1794917741.974755, 0.253000]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1794917741.979525, 0.258000]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1794917741.983330, 0.262000]: Loading controller: joint_state_controller
+[INFO] [1794917742.000175, 0.271000]: Loading controller: rear_right_velocity_controller
+[INFO] [1794917742.014077, 0.285000]: Loading controller: rear_left_velocity_controller
+[INFO] [1794917742.022127, 0.293000]: Loading controller: front_right_steering_position_controller
+[INFO] [1794917742.061351, 0.332000]: Loading controller: front_left_steering_position_controller
+[INFO] [1794917742.078970, 0.349000]: Controller Spawner: Loaded controllers: joint_state_controller, rear_right_velocity_controller, rear_left_velocity_controller, front_right_steering_position_controller, front_left_steering_position_controller
+[INFO] [1794917742.097142, 0.367000]: Started controllers: joint_state_controller, rear_right_velocity_controller, rear_left_velocity_controller, front_right_steering_position_controller, front_left_steering_position_controller
+[INFO] [1794917775.208012, 33.448000]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1794917775.209898, 33.449000]: Stopping all controllers...
+[31m[gazebo-2] escalating to SIGTERM[0m
+[31m[smart/controller_spawner-4] escalating to SIGTERM[0m
+... logging to /root/.ros/log/9aca706a-e280-11f1-83d3-e02e0bf9d409/roslaunch-LE-2925.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/tmp/ugv-gazebo-i5dmgwii/trial.launch
+[1mstarted roslaunch server http://127.0.0.1:42105/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /gazebo/enable_ros_network: True
+ * /robot_description: <?xml version="1....
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+ * /smart/front_left_steering_position_controller/joint: front_left_steeri...
+ * /smart/front_left_steering_position_controller/pid/d: 1.0
+ * /smart/front_left_steering_position_controller/pid/i: 200.0
+ * /smart/front_left_steering_position_controller/pid/p: 40000.0
+ * /smart/front_left_steering_position_controller/type: effort_controller...
+ * /smart/front_right_steering_position_controller/joint: front_right_steer...
+ * /smart/front_right_steering_position_controller/pid/d: 1.0
+ * /smart/front_right_steering_position_controller/pid/i: 200.0
+ * /smart/front_right_steering_position_controller/pid/p: 40000.0
+ * /smart/front_right_steering_position_controller/type: effort_controller...
+ * /smart/joint_state_controller/publish_rate: 50
+ * /smart/joint_state_controller/type: joint_state_contr...
+ * /smart/rear_left_velocity_controller/joint: rear_left_wheel_j...
+ * /smart/rear_left_velocity_controller/pid/d: 10.0
+ * /smart/rear_left_velocity_controller/pid/i: 0.01
+ * /smart/rear_left_velocity_controller/pid/p: 100.0
+ * /smart/rear_left_velocity_controller/type: velocity_controll...
+ * /smart/rear_right_velocity_controller/joint: rear_right_wheel_...
+ * /smart/rear_right_velocity_controller/pid/d: 10.0
+ * /smart/rear_right_velocity_controller/pid/i: 0.01
+ * /smart/rear_right_velocity_controller/pid/p: 100.0
+ * /smart/rear_right_velocity_controller/type: velocity_controll...
+ * /use_sim_time: True
+ * /waypoint_loader/path: /tmp/ugv-gazebo-i...
+ * /waypoint_loader/velocity: 10.0
+
+NODES
+  /
+    cmdvel2gazebo (car_model/cmdvel2gazebo.py)
+    gazebo (gazebo_ros/gzserver)
+    pure_pursuit (pure_persuit/pure_persuit.py)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    spawn_model (gazebo_ros/spawn_model)
+    transform_publisher (car_model/transform_publisher.py)
+    vehicle_pose_and_velocity_updater (car_model/vehicle_pose_and_velocity_updater.py)
+    waypoint_loader (waypoint_loader/waypoint_loader.py)
+    waypoint_updater (waypoint_updater/waypoint_updater.py)
+  /smart/
+    controller_spawner (controller_manager/spawner)
+
+auto-starting new master
+[1mprocess[master]: started with pid [2936][0m
+[1mROS_MASTER_URI=http://127.0.0.1:36133/[0m
+]2;/tmp/ugv-gazebo-i5dmgwii/trial.launch http://127.0.0.1:36133/
+[1msetting /run_id to 9aca706a-e280-11f1-83d3-e02e0bf9d409[0m
+[1mprocess[rosout-1]: started with pid [2949][0m
+started core service [/rosout]
+[1mprocess[gazebo-2]: started with pid [2956][0m
+[1mprocess[spawn_model-3]: started with pid [2958][0m
+[1mprocess[smart/controller_spawner-4]: started with pid [2962][0m
+[1mprocess[robot_state_publisher-5]: started with pid [2963][0m
+[1mprocess[cmdvel2gazebo-6]: started with pid [2964][0m
+[1mprocess[vehicle_pose_and_velocity_updater-7]: started with pid [2965][0m
+[1mprocess[transform_publisher-8]: started with pid [2966][0m
+[1mprocess[waypoint_loader-9]: started with pid [2968][0m
+[1mprocess[waypoint_updater-10]: started with pid [2972][0m
+[1mprocess[pure_pursuit-11]: started with pid [2974][0m
+[1m[spawn_model-3] process has finished cleanly
+log file: /root/.ros/log/9aca706a-e280-11f1-83d3-e02e0bf9d409/spawn_model-3*.log[0m
+[pure_pursuit-11] killing on exit
+[waypoint_updater-10] killing on exit
+[waypoint_loader-9] killing on exit
+[transform_publisher-8] killing on exit
+[vehicle_pose_and_velocity_updater-7] killing on exit
+[cmdvel2gazebo-6] killing on exit
+[robot_state_publisher-5] killing on exit
+[smart/controller_spawner-4] killing on exit
+[gazebo-2] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+completed=True, outside_lane=False, RMSE=0.491

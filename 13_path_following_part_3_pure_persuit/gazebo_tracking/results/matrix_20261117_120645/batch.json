@@ -1,0 +1,7 @@
+{
+  "platform": "Gazebo",
+  "route_labels": {
+    "s_curve": "S形路线"
+  },
+  "half_width_m": 1.75
+}

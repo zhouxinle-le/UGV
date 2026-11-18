@@ -1,0 +1,32 @@
+<launch>
+  <arg name="controller"/>
+  <arg name="route"/>
+  <arg name="speed"/>
+  <arg name="x"/>
+  <arg name="y"/>
+  <arg name="yaw"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="gui" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find car_model)/urdf/smart.xacro' roboname:=smart"/>
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_model"
+        args="-urdf -model smart -param robot_description -x $(arg x) -y $(arg y) -Y $(arg yaw)"/>
+  <group>
+    <remap from="/smart/cmd_vel" to="/gazebo_trial/drive"/>
+    <include file="$(find car_model)/launch/control.launch">
+      <arg name="robot_name" value="smart"/>
+      <arg name="config_file" value="smart_control_config.yaml"/>
+    </include>
+  </group>
+  <node pkg="waypoint_loader" type="waypoint_loader.py" name="waypoint_loader" required="true">
+    <param name="path" value="$(arg route)"/>
+    <param name="velocity" type="double" value="$(arg speed)"/>
+  </node>
+  <include file="$(find waypoint_updater)/launch/waypoint_updater.launch"/>
+  <node pkg="pure_persuit" type="$(eval 'pure_persuit.py' if arg('controller') == 'pure_pursuit' else 'stanley.py')"
+        name="$(arg controller)" required="true">
+    <remap from="/smart/cmd_vel" to="/gazebo_trial/command"/>
+  </node>
+</launch>
